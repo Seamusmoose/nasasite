@@ -141,35 +141,23 @@ const MarsRover = (props) => {
       <input
         name="date"
         type="date"
-        min={RoverDateSelectorMin(roverVal)}
-        max={RoverDateSelectorMax(roverVal)}
+        // min={RoverDateSelectorMin(roverVal)}
+        // max={RoverDateSelectorMax(roverVal)}
         value={queryData.latestEarthDate}
         onChange={handleDateChange}
       />
       <div className="gridContainer">
-        {filterData === []
-          ? roverData.slice(0, size).map((photo, index) => {
-              return (
-                <div key={index}>
-                  <RoverCard
-                    earthDate={photo.earth_date}
-                    image={photo.img_src}
-                    camera={photo.camera.name}
-                  />
-                </div>
-              );
-            })
-          : filterData.slice(0, size).map((photo, index) => {
-              return (
-                <div key={index}>
-                  <RoverCard
-                    earthDate={photo.earth_date}
-                    image={photo.img_src}
-                    camera={photo.camera.name}
-                  />
-                </div>
-              );
-            })}
+        {filterData.slice(0, size).map((photo, index) => {
+          return (
+            <div key={index}>
+              <RoverCard
+                earthDate={photo.earth_date}
+                image={photo.img_src}
+                camera={photo.camera.name}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
