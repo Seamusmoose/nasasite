@@ -3,6 +3,15 @@ const express = require("express");
 const app = express();
 
 
+const apth = require('path');
+const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static())
+  app.get('*', req, res) => {
+    req.sendFile(path.resolve(__dirname, "build", "index.html"))
+  }
+}
 
 app.get("/weather", async (req, res) => {
   const browser = await puppeteer.launch({ headless: true });
@@ -41,4 +50,4 @@ app.get("/weather", async (req, res) => {
   await newPage.close();
 });
 
-app.listen(5000);
+app.listen(port);
